@@ -19,21 +19,20 @@ source("profit_factor.R")
 
 
 # specifying the path to the 4x terminals used into the dataframe
-Terminals <- data.frame(id = 1:5, TermPath = c("C:/Program Files (x86)/FxPro - Terminal1/MQL4/Files/",
-                                               "C:/Program Files (x86)/FxPro - Terminal2/MQL4/Files/",
-                                               "C:/Program Files (x86)/FxPro - Terminal3/MQL4/Files/",
-                                               "C:/Program Files (x86)/FxPro - Terminal4/MQL4/Files/",
-                                               "C:/Program Files (x86)/FxPro - Terminal5/MQL4/Files/"),
+Terminals <- data.frame(id = 1:4, TermPath = c("C:/Program Files (x86)/ICMarkets MT4 Terminal1/MQL4/Files/",
+                                               "C:/Program Files (x86)/ICMarkets MT4 Terminal2/MQL4/Files/",
+                                               "C:/Program Files (x86)/ICMarkets MT4 Terminal3/MQL4/Files/",
+                                               "C:/Program Files (x86)/ICMarkets MT4 Terminal4/MQL4/Files/"),
                         stringsAsFactors = F)
 
 # -------------------------------
 # load prices of 28 currencies
 # if file is not found in the terminal sandbox, retrieve it from working directory
-if(!file.exists(file.path(Terminals[2,2], "AI_CP15-50000.csv"))){
+if(!file.exists(file.path(Terminals[2,2], "AI_CP15.csv"))){
   # retrieve the price data from working directory      
   prices <- read_csv("AI_CP15.csv", col_names = F)
   # otherwise get the fresh copy from the terminal sandbox
-} else { prices <- read_csv(file.path(Terminals[2,2], "AI_CP15-50000.csv"), col_names = F)}
+} else { prices <- read_csv(file.path(Terminals[2,2], "AI_CP15.csv"), col_names = F)}
 # make the price having proper format
 prices$X1 <- ymd_hms(prices$X1)
 
